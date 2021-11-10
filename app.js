@@ -159,7 +159,7 @@ app.post('/', async (req, res) => {
     const images = await generateBase64Images(playerInfo);
     let counter = 1;
     for (let image of images) {
-        const path = './';
+        const path = '/';
         const optionalObj = { fileName: `${playerName}${counter}`, type: 'png' };
         await base64ToImage(image, path, optionalObj);
         counter++;
