@@ -44,10 +44,8 @@ module.exports.createBingoCard = async (req, res) => {
     await playerInfo.save();
     const images = await generateBase64Images(playerInfo);
     let attachments = [];
-    let counter = 1;
     for (let image of images) {
         attachments.push({ path: image });
-        counter++;
     }
     const mailOptions = {
         from: process.env.EMAIL, // sender address
@@ -60,5 +58,6 @@ module.exports.createBingoCard = async (req, res) => {
 
     playerInfo.images = images;
     await playerInfo.save();
+    req.flash('success', 'Successful Genarating Bingo Cards!');
     res.redirect('/');
 }

@@ -9,7 +9,6 @@ const bingoCardShema = new mongoose.Schema({
                 lineName: String,
                 line: [],
                 winnerId: String,
-                cardId: String
             }]
         }
     ],
