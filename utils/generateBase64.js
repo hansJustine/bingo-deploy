@@ -125,7 +125,8 @@ module.exports = async function generateBase64Images(pInfo) {
                         </tbody>
                     </table>
                 </body>
-                </html>`
+                </html>`,
+            puppeteerArgs: { args: ["--no-sandbox"] }
         });
         const base64Image = new Buffer.from(image).toString('base64');
         const dataURI = 'data:image/png;base64,' + base64Image
