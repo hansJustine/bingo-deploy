@@ -12,6 +12,9 @@ const PORT = process.env.PORT || 3000;
 const cardRoutes = require('./routes/card');
 const ExpressError = require('./utils/ExpressError');
 
+const puppeteer = require('puppeteer');
+const browser = await puppeteer.launch({ executablePath: '/path/to/Chrome', headless: false });
+
 mongoose.connect(process.env.DATABASE, { useNewUrlParser: true })
     .then(() => console.log('Mongo connected!'))
     .catch((err) => console.log('Error! ', err));
