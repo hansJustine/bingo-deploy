@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
-const BingoCard = require('./models/bingocard');
+const BingoCard = require('./models/bingoCard');
 const {createBingoCards} = require('./createBingoCards');
 require('dotenv').config();
-
-
-
 
 const seedDb = async () => {
     await BingoCard.deleteMany({});
