@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const BingoCard = require('./models/bingocard');
-const createBingoCards = require('./createBingoCards');
+const {createBingoCards} = require('./createBingoCards');
 require('dotenv').config();
 
 

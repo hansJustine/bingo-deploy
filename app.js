@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 const PORT = process.env.PORT || 3000;
 
 const cardRoutes = require('./routes/card');
+const playRoutes = require('./routes/play');
 const ExpressError = require('./utils/ExpressError');
 
 // const puppeteer = require('puppeteer');
@@ -60,6 +61,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', cardRoutes);
+app.use('/play', playRoutes);
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page not found', 404));

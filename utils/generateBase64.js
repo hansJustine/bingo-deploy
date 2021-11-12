@@ -20,7 +20,7 @@ const generateQR = async text => {
 }
 
 async function randomColor() {
-    let colors = ['yellow', 'orange', '#aa3333'];
+    let colors = ['#46cab9', '#58d37d', '#f06262', 'rgb(212, 212, 66)', 'rgb(235, 184, 91)'];
     let randomNum = Math.floor(Math.random() * colors.length);
     return colors[randomNum];
 }

@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
+
 const bingoCardShema = new mongoose.Schema({
+    gameSession: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'GameSession'
+    },
     playerName: String,
     playerPhoneNum: Number,
     cards: [

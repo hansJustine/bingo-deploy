@@ -59,7 +59,7 @@ const generateDiagonals = (bingoCard, id) => {
     return bingoCard;
 }
 
-module.exports = async function createBingoCards(qty, id) {
+module.exports.createBingoCards = async function createBingoCards(qty, id) {
     let totalCards = [];
     function helper(num) {
         let bingoCard = [];
@@ -76,3 +76,5 @@ module.exports = async function createBingoCards(qty, id) {
     helper(qty);
     return totalCards;
 }
+
+module.exports.createNumbers = createNumbers;

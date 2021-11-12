@@ -25,6 +25,7 @@ const Joi = BaseJoi.extend(extension);
 
 module.exports.cardSchema = Joi.object({
     info: Joi.object({
+        gameSession: Joi.string().required(),
         playerName: Joi.string().required().escapeHTML(),
         playerPhoneNum: Joi.number().required(),
         cards: [
@@ -44,4 +45,9 @@ module.exports.cardSchema = Joi.object({
             Joi.string()
         ]
     })
+});
+
+module.exports.gameSessionSchema = Joi.object({
+    sessionName: Joi.string().required()
 })
+

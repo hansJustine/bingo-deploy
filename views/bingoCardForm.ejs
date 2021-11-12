@@ -1,46 +1,127 @@
 <% layout('layouts/boilerplate') %>
 
     <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-6">
+        <div class="col-12">
             <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop">
-                GENERATE BINGO CARDS
+                data-bs-target="#gameSessionModal">
+                CREATE GAME SESSION
             </button>
-        </div>
-
-    </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">GENERATE BINGO CARDS</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/" method="POST">
-                        <!-- <h6 class="text-center mb-3">GENERATE BINGO CARDS</h6> -->
-                        <div class="form-group mb-3">
-                            <label for="playerName">Player Name</label>
-                            <input type="text" class="form-control" id="playerName" name="info[playerName]" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="playerPhoneNum">Phone Number</label>
-                            <input type="number" class="form-control" id="playerPhoneNum" name="info[playerPhoneNum]"
-                                required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="cardQty">Card QTY</label>
-                            <input type="number" class="form-control" id="cardQty" name="info[cardQty]" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="email">Email for receiving cards</label>
-                            <input type="email" class="form-control" id="email" name="info[email]" required>
-                        </div>
-                        <button class="btn btn-primary btn-sm">Generate</button>
-                    </form>
+             <!-- Modal CREATE GAME SESSION-->
+            <div class="modal fade" id="gameSessionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Create Game Session</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/gamesession" method="POST">
+                            <div class="form-group mb-3">
+                                <label for="sessionName">Session Name</label>
+                                <input type="text" class="form-control" id="sessionName" name="gameSession[sessionName]" required>
+                            </div>
+                            <button class="btn btn-primary btn-sm">CREATE</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-12">
+            <button type="button" class="btn btn-primary btn mt-2" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                GENERATE BINGO CARDS
+            </button>
+             <!-- Modal GENERATE BINGO CARDS -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">GENERATE BINGO CARDS</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <% if(gameSession.length){ %>
+                            <h6>AVAILABLE SESSIONS: </h6>
+                            <div class="row">
+                                <% for(let session of gameSession){ %>
+                                    <% if(!session.isDone){ %>
+                                    <% let id = session._id %>
+                                        <div class="col-2 my-1">
+                                            <button class="btn btn-secondary btn-sm" type="button" onclick="putIdToInput(this)" value="<%= session._id %>"><%= session.sessionName %></button>
+                                        </div>
+                                    <% } %> 
+                                <% } %>
+                            </div>
+                        <% } %>  
+                        <form action="/" method="POST">
+                            <div class="form-group mb-3">
+                                <label for="gameSession">Game Session ID</label>
+                                <input type="text" class="form-control" id="gameSession" name="info[gameSession]" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="playerName">Player Name</label>
+                                <input type="text" class="form-control" id="playerName" name="info[playerName]" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="playerPhoneNum">Phone Number</label>
+                                <input type="number" class="form-control" id="playerPhoneNum" name="info[playerPhoneNum]"
+                                    required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="cardQty">Card QTY</label>
+                                <input type="number" class="form-control" id="cardQty" name="info[cardQty]" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="email">Email for receiving cards</label>
+                                <input type="email" class="form-control" id="email" name="info[email]" required>
+                            </div>
+                            <button class="btn btn-primary btn-sm">Generate</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="button" class="btn btn-primary btn-sm mt-2" data-bs-toggle="modal"
+            data-bs-target="#play">
+                Play
+            </button>
+        </div>
+    </div>
+
+   
+        <!-- Modal Play Links -->
+        <div class="modal fade" id="play" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="play" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Pick a Game Session</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <% if(gameSession.length){ %>
+                        <h6>AVAILABLE SESSIONS: </h6>
+                        <div class="row">
+                            <% for(let session of gameSession){ %>
+                                <% if(!session.isDone){ %>
+                                <% let id = session._id %>
+                                    <div class="col-2 mt-2">
+                                        <a class="btn btn-primary btn-sm" href="/play/<%= session._id %>"><%= session.sessionName %></a>
+                                    </div>
+                                <% } %> 
+                            <% } %>
+                        </div>
+                    <% } %>  
+                </div>
+            </div>
+        </div>
+        <script>
+            function putIdToInput(button){
+                document.getElementById('gameSession').value = button.value;
+            }
+        </script>
+    
