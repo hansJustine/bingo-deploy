@@ -3,7 +3,7 @@ const generateBase64Images = require('../utils/generateBase64');
 const { sendImageToEmail } = require('../utils/sendImageToEmail');
 const base64ToImage = require('base64-to-image');
 const nodemailer = require('nodemailer');
-const BingoCard = require('../models/bingoCard');
+const BingoCard = require('../models/bingocard');
 const GameSession = require('../models/gameSession');
 
 
