@@ -1,0 +1,101 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row mt-5">
+    <div class="col-4">
+        <h5 id="bingoTitle">BINGO BONANZA</h5>
+        <% if (rolledNums) { %> 
+            <div>
+                <% if (latestRolledNum >= 1 && latestRolledNum <= 15) { %>
+                    <span class="h4 pt-2 d-inline-block bNumbers bingoNumbers text-center">
+                        <span class="h5"> B </span>
+                        <br>
+                        <%= latestRolledNum %> 
+                    </span>
+                <% } else if (latestRolledNum >= 16 && latestRolledNum <= 30) { %>
+                    <span class="h4 pt-2 d-inline-block iNumbers bingoNumbers text-center">
+                        <span class="h5"> I </span>
+                        <br>
+                        <%= latestRolledNum %> 
+                    </span>
+                <% } else if (latestRolledNum >= 31 && latestRolledNum <= 45) { %> 
+                    <span class="h4 pt-2 d-inline-block nNumbers bingoNumbers text-center">
+                        <span class="h5"> N </span>
+                        <br>
+                        <%= latestRolledNum %> 
+                    </span>
+                <% } else if (latestRolledNum >= 46 && latestRolledNum <= 60) { %> 
+                    <span class="h4 pt-2 d-inline-block gNumbers bingoNumbers text-center">
+                        <span class="h5"> G </span>
+                        <br>
+                        <%= latestRolledNum %> 
+                    </span>
+                <% } else if (latestRolledNum >= 61 && latestRolledNum <= 75) { %>
+                    <span class="h4 pt-2 d-inline-block oNumbers bingoNumbers text-center">
+                        <span class="h5"> O </span>
+                        <br>
+                        <%= latestRolledNum %> 
+                    </span>
+                <% } %> 
+                <h6>LATEST ROLL</h6>
+            </div>
+        <% } %> 
+    </div>
+    <div class="col-4">
+        <form action="/play" method="POST">
+            <div class="form-group w-50 m-auto">
+                <label for="rolledNum"><h6>ENTER ROLLED NUMBER:</h6></label>
+                <input class="form-control form-control-sm" min="1" max="75" type="number" name="rolledNum" id="rolledNum">
+            </div>
+            <button class="btn btn-primary btn-sm mt-2 w-50">Roll</button>
+        </form>
+    </div>
+    <div class="col-4">
+        <h6>INFORMATIONS</h6>
+    </div>
+</div>
+
+<div class="row mt-5 mb-3" style="text-align: left;">
+    <div class="col-3">
+        <h4 class="d-inline-block mb-3">ROLLED NUMBERS</h4>
+    </div>
+</div>
+
+<div class="row" style="text-align: left;">
+    <div class="col-12">
+        <% if(rolledNums) { %>
+            <% for (let num of rolledNums) { %>
+                <% if (num >= 1 && num <= 15) { %>
+                    <span class="h4 me-5 mb-5 pt-2 d-inline-block bNumbers bingoNumbers text-center">
+                        <span class="h5"> B </span>
+                        <br>
+                        <%= num %> 
+                    </span>
+                <% } else if (num >= 16 && num <= 30) { %>
+                    <span class="h4 me-5 mb-5 pt-2 d-inline-block iNumbers bingoNumbers text-center">
+                        <span class="h5"> I </span>
+                        <br>
+                        <%= num %> 
+                    </span>
+                <% } else if (num >= 31 && num <= 45) { %> 
+                    <span class="h4 me-5 mb-5 pt-2 d-inline-block nNumbers bingoNumbers text-center">
+                        <span class="h5"> N </span>
+                        <br>
+                        <%= num %> 
+                    </span>
+                <% } else if (num >= 46 && num <= 60) { %> 
+                    <span class="h4 me-5 mb-5 pt-2 d-inline-block gNumbers bingoNumbers text-center">
+                        <span class="h5"> G </span>
+                        <br>
+                        <%= num %> 
+                    </span>
+                <% } else if (num >= 61 && num <= 75) { %>
+                    <span class="h4 me-5 mb-5 pt-2 d-inline-block oNumbers bingoNumbers text-center">
+                        <span class="h5"> O </span>
+                        <br>
+                        <%= num %> 
+                    </span>
+                <% } %>  
+            <% } %>  
+        <% } %> 
+    </div>
+</div>
