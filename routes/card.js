@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const { createBingoCard, bingoCardForm, createGameSession } = require('../controllers/cards');
 const catchAsync = require('../utils/catchAsync');
 const { validateCard, validateGameSession } = require('../middleware');
