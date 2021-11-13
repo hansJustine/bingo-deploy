@@ -10,18 +10,15 @@ const gameSessionSchema = new mongoose.Schema({
         }
     ],
     winners: [],
+    history: [],
     bLines: [],
     iLines: [],
     nLines: [],
     gLines: [],
     oLines: [],
     rowsWo3s: [],
-    diagonals: [{
-        _id: mongoose.Schema.Types.ObjectId,
-        lineName: String,
-        line: [],
-        winnerId: String
-    }]
+    row3: [],
+    diagonals: []
 })
 
 module.exports = mongoose.model('GameSession', gameSessionSchema);

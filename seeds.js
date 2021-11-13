@@ -11,7 +11,7 @@ const seedDb = async () => {
         const playerInfo = new BingoCard({
             playerName: 'Hans',
             playerPhoneNum: 09183115689
-        })
+        });
         playerInfo.cards = await createBingoCards(random5, playerInfo._id);
         await playerInfo.save();
     }

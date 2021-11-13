@@ -1,11 +1,11 @@
 const { createBingoCards } = require('../utils/createBingoCards');
 const generateBase64Images = require('../utils/generateBase64');
 const { sendImageToEmail } = require('../utils/sendImageToEmail');
+const clusterLines = require('../utils/clusterLines');
 const base64ToImage = require('base64-to-image');
 const nodemailer = require('nodemailer');
 const BingoCard = require('../models/bingocard');
 const GameSession = require('../models/gameSession');
-
 
 module.exports.bingoCardForm = async (req, res) => {
     let gameSession = await GameSession.find({});
@@ -25,9 +25,15 @@ module.exports.createBingoCard = async (req, res) => {
     }
     await sendImageToEmail(email, attachments);
     playerInfo.images = images;
-    let updatedGameSes = await GameSession.findByIdAndUpdate(gameSession, { $push: { players: playerInfo } }, { new: true });
-    playerInfo.gameSession = updatedGameSes;
+    let foundGameSession = await GameSession.findById(gameSession);
+    foundGameSession.players.push(playerInfo);
+    let cardLines = cardsGenerated.reduce((lines, card) => lines.concat(card.cardInfo), []);
+    console.log(cardsGenerated);
+    await clusterLines(foundGameSession, cardLines);
+    playerInfo.gameSession = foundGameSession;
+    await foundGameSession.save();
     await playerInfo.save();
+    
     req.flash('success', 'Successful genarating bingo cards!');
     res.redirect('/');
 }

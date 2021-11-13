@@ -51,3 +51,7 @@ module.exports.gameSessionSchema = Joi.object({
     sessionName: Joi.string().required()
 })
 
+module.exports.rolledNumSchema = Joi.object({
+    rolledNum: Joi.number().required().min(1).max(75)
+})
+

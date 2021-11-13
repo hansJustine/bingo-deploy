@@ -25,7 +25,7 @@ const generateColumn = (columnName, id, nums = createNumbers()) => {
         column.push(randomNum);
         nums[randomNum - 1] = null;
     }
-    return { lineName: name, line: column, winnerId: id };
+    return { lineName: name, lineTracker: 5, line: column, winnerId: id };
 }
 
 const generateRows = (bingoCard, id) => {
@@ -37,7 +37,7 @@ const generateRows = (bingoCard, id) => {
         tempRow.push(bingoCard[3].line[i]);
         tempRow.push(bingoCard[4].line[i]);
         // console.log(tempRow);
-        let rowObj = { lineName: `r${i + 1}`, line: tempRow, winnerId: id };
+        let rowObj = { lineName: `r${i + 1}`, lineTracker: 5, line: tempRow, winnerId: id };
         bingoCard.push(rowObj);
     }
 }
@@ -47,14 +47,14 @@ const generateDiagonals = (bingoCard, id) => {
     for (let i = 0; i < 5; i++) {
         firstDiagonal.push(bingoCard[i].line[i]);
     }
-    bingoCard.push({ lineName: 'd1', line: firstDiagonal, winnerId: id });
+    bingoCard.push({ lineName: 'd1', lineTracker: 5, line: firstDiagonal, winnerId: id });
     let secondDiagonal = [];
     let indexOfNum = 0;
     for (let j = 4; j >= 0; j--) {
         secondDiagonal.push(bingoCard[j].line[indexOfNum]);
         indexOfNum++;
     }
-    bingoCard.push({ lineName: 'd2', line: secondDiagonal, winnerId: id });
+    bingoCard.push({ lineName: 'd2', lineTracker: 5, line: secondDiagonal, winnerId: id });
 
     return bingoCard;
 }
