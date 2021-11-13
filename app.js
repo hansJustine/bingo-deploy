@@ -13,9 +13,6 @@ const cardRoutes = require('./routes/card');
 const playRoutes = require('./routes/play');
 const ExpressError = require('./utils/ExpressError');
 
-// const puppeteer = require('puppeteer');
-// const browser = await puppeteer.launch({ headless: false });
-
 mongoose.connect(process.env.DATABASE, { useNewUrlParser: true })
     .then(() => console.log('Mongo connected!'))
     .catch((err) => console.log('Error! ', err));

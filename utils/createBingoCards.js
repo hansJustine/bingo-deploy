@@ -47,14 +47,14 @@ const generateDiagonals = (bingoCard, id) => {
     for (let i = 0; i < 5; i++) {
         firstDiagonal.push(bingoCard[i].line[i]);
     }
-    bingoCard.push({ lineName: 'd1', lineTracker: 5, line: firstDiagonal, winnerId: id });
+    bingoCard.push({ lineName: 'd1', lineTracker: 4, line: firstDiagonal, winnerId: id });
     let secondDiagonal = [];
     let indexOfNum = 0;
     for (let j = 4; j >= 0; j--) {
         secondDiagonal.push(bingoCard[j].line[indexOfNum]);
         indexOfNum++;
     }
-    bingoCard.push({ lineName: 'd2', lineTracker: 5, line: secondDiagonal, winnerId: id });
+    bingoCard.push({ lineName: 'd2', lineTracker: 4, line: secondDiagonal, winnerId: id });
 
     return bingoCard;
 }

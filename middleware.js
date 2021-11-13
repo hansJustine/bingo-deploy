@@ -34,8 +34,3 @@ module.exports.validateRolledNum = (req, res, next) => {
         next();
     }
 }
-
-module.exports.initializeSesLinesAndHistory = (req, res, next) => {
-
-
-}
